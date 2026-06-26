@@ -1,0 +1,50 @@
+{
+  "name": "ntuhnotifier2",
+  "private": true,
+  "version": "0.0.0",
+  "author": "Ian",
+  "description": "NTUH Notifier",
+  "main": "electron/main.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "electron:start": "cross-env NODE_ENV=development concurrently \"npm run dev\" \"wait-on http://localhost:5173 && electron .\"",
+    "electron:build": "npm run build && electron-builder --config.directories.output=\"%TEMP%\\ntuhnotifier2-dist\""
+  },
+  "build": {
+    "appId": "com.ntuhnotifier2.app",
+    "productName": "NTUH Notifier",
+    "directories": {
+      "output": "dist-electron"
+    },
+    "win": {
+      "target": [
+        "msi"
+      ],
+      "icon": "public/icon.png"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*"
+    ]
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.2",
+    "cheerio": "^1.2.0",
+    "concurrently": "^10.0.3",
+    "cross-env": "^10.1.0",
+    "electron": "^42.4.1",
+    "electron-builder": "^26.15.3",
+    "typescript": "~6.0.2",
+    "vite": "^8.0.12",
+    "wait-on": "^9.0.10"
+  },
+  "dependencies": {
+    "lucide-react": "^1.21.0",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7"
+  }
+}
